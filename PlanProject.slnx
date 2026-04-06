@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/API/" />
+  <Folder Name="/src/Core/">
+    <Project Path="Plan.HospitalGaragoa.Application/Plan.HospitalGaragoa.Application.csproj" />
+    <Project Path="Plan.HospitalGaragoa/Plan.HospitalGaragoa.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Infrastructure/" />
+  <Folder Name="/src/UI/" />
+  <Folder Name="/tests/">
+    <Project Path="Test.Domain.Tests/Test.Domain.csproj" />
+  </Folder>
+</Solution>
