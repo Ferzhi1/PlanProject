@@ -15,10 +15,12 @@ namespace Plan.HospitalGaragoa.Domain.Entities
         public MedicalRecord(Guid id, string createdBy, DateTime createdDate, Guid patientId, DateTime createdAtRecord, string notes, string recordType)
             : base(id, createdBy, createdDate)
         {
+            if (patientId == Guid.Empty) throw new ArgumentException("PatientId is required");
+            if (createdAtRecord == default) throw new ArgumentException("CreatedAtRecord is required");
             PatientId = patientId;
             CreatedAtRecord = createdAtRecord;
-            Notes = notes;
-            RecordType = recordType;
+            Notes = notes ?? string.Empty;
+            RecordType = recordType ?? "General";
         }
     }
 }

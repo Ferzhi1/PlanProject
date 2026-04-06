@@ -6,18 +6,16 @@ namespace Plan.HospitalGaragoa.Domain.Common
 {
     public abstract class AuditableEntity
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; protected set; }
+        public string CreatedBy { get; protected set; }
+        public DateTime CreatedDate { get; protected set; }
 
-        public string CreatedBy { get; set; }   
-
-        public DateTime CreatedDate { get; set; }
-
-        protected AuditableEntity(Guid id,string createdBy,DateTime createdDate)
+        protected AuditableEntity(Guid id, string createdBy, DateTime createdDate)
         {
+            if (id == Guid.Empty) throw new ArgumentException("Id is required");
             Id = id;
-            CreatedBy = createdBy ?? throw new ArgumentNullException(nameof(createdBy));
-            CreatedDate = createdDate;
+            CreatedBy = string.IsNullOrWhiteSpace(createdBy) ? throw new ArgumentNullException(nameof(createdBy)) : createdBy;
+            CreatedDate = createdDate == default ? DateTime.UtcNow : createdDate;
         }
-
     }
 }

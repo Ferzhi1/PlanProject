@@ -17,14 +17,14 @@ namespace Plan.HospitalGaragoa.Domain.Entities
             : base(id, createdBy, createdDate)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Name is required");
-            Name = name;
-            Location = location;
+            Name = name.Trim();
+            Location = location?.Trim();
         }
 
         public void AddDoctor(Guid doctorId)
         {
             if (doctorId == Guid.Empty) throw new ArgumentException("doctorId is required");
-            _doctorIds.Add(doctorId);
+            if (!_doctorIds.Contains(doctorId)) _doctorIds.Add(doctorId);
         }
     }
 }
